@@ -1,0 +1,50 @@
+﻿@model RedditAddModel
+@{
+    ViewData["Title"] = "_AddPartial";
+    Layout = null;
+}
+
+
+<table>
+    <tr>
+        <td>
+            <input asp-for="@Model.Id" class="form-control" />
+        </td>
+        <td>
+            <input asp-for="@Model.Title" class="form-control" />
+        </td>
+        <td>
+            <input asp-for="@Model.Description" class="form-control" />
+        </td>
+        <td>
+            <select asp-for="@Model.SelectedCategory" asp-items="@Model.Categories" class="form-control">
+                <option>Choose</option>
+            </select>
+        </td>
+        <td>
+            <select asp-for="@Model.SelectedApplication" asp-items="@Model.Applications" class="form-control">
+                <option>Choose</option>
+            </select>
+        </td>
+        <td>
+            <input type="button" id="Save" value="Save" />
+        </td>
+    </tr>
+</table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#Save").on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/Home/PostAddModel",
+            data: $('#Add').serialize(),
+            type: "POST",
+            success: function (data) {
+                alert(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+</script>

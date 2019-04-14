@@ -1,0 +1,34 @@
+﻿@model RedditExampleModel
+@{
+    ViewData["Title"] = "RedditExample";
+}
+
+<h2>List of Items</h2>
+<table border="1" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+    <thead>
+        <tr>
+            <td width="16%" align="center">Id</td>
+            <td width="16%" align="center">Title</td>
+            <td width="16%" align="center">Description</td>
+            <td width="16%" align="center">Category</td>
+            <td width="16%" align="center">Application</td>
+            <td width="16%" align="center">Tickets</td>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Results)
+    {
+        <tr>
+            <td align="center">@item.Id</td>
+            <td align="center">@item.Title</td>
+            <td align="center">@item.Description</td>
+            <td align="center">@item.Category</td>
+            <td align="center">@item.Application</td>
+            <td align="center">@item.Tickets</td>
+        </tr>
+    }
+</table>
+<br />
+<form id="Add">
+    <partial name="_AddPartial" for="@Model.AddModel" />
+</form>
+
